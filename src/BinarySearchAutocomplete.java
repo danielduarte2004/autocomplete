@@ -111,19 +111,17 @@ public class BinarySearchAutocomplete implements Autocompletor {
 		if (first == -1) {               // prefix not found
 			return new ArrayList<>();
 		}
-    PriorityQueue<Term> pq = new PriorityQueue<>(Comparator.comparing(Term::getWeight));
 
-		for (Term t : myTerms) {
-			if (!t.getWord().startsWith(prefix)) {
-				continue; // don't process if doesn't begin with prefix
-			}
-			if (pq.size() < k) {
+    PriorityQueue<Term> pq = new PriorityQueue<>(Comparator.comparing(Term::getWeight));
+    for (int i = first; i <= last; i++) {
+      Term t = myTerms[i];
+      if (pq.size() < k) {
 				pq.add(t);
 			} else if (pq.peek().getWeight() < t.getWeight()) {
 				pq.remove();
 				pq.add(t);
 			}
-		}
+    }
 
 		int numResults = Math.min(k, pq.size());
 		LinkedList<Term> ret = new LinkedList<>();
