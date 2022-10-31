@@ -46,15 +46,23 @@ public class BinarySearchLibrary {
 	 */
 	public static <T> int firstIndex(List<T> list,
 			T target, Comparator<T> comp) {
-
 		int low = 0;
 		int high = list.size() - 1;
 		int foundAt = -1; // return -1 if not found
 		while (low <= high) {
-			// TODO: Complete code here. Consider the following invariant:
-			// foundAt should be least index that matches target outside of [low, high] (-1 if none)
-			// indices less than foundAt that match target should be in [low, high]
-		}
+      int mid = (low + high)/2;
+      T midval = list.get(mid);
+      int cmp = comp.compare(midval,target);
+
+      if (cmp < 0)
+        low = mid + 1;
+      else if (cmp > 0)
+        high = mid - 1;
+      else {
+        foundAt = mid; // target found
+        high = mid - 1;
+      }
+    }
 		return foundAt;
 	}
 
@@ -78,10 +86,19 @@ public class BinarySearchLibrary {
 		int high = list.size() - 1;
 		int foundAt = -1; // return -1 if not found
 		while (low <= high) {
-			// TODO: Complete code here. Consider the following invariant:
-			// foundAt should be *greatest* index that matches target outside of [low, high], (-1 if none)
-			// indices greater than foundAt that match target should be in [low, high]
-		}
+      int mid = (low + high)/2;
+      T midval = list.get(mid);
+      int cmp = comp.compare(midval,target);
+
+      if (cmp < 0)
+        low = mid + 1;
+      else if (cmp > 0)
+        high = mid - 1;
+      else {
+        foundAt = mid; // target found
+        low = mid + 1;
+		  }
+    }
 		return foundAt;
 	}
 
