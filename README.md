@@ -1,6 +1,9 @@
 # Project 4: Autocomplete
 
-This is the directions document for Project 4 Autocomplete in CompSci 201 at Duke University, Fall 2022.
+I developed two different Java implementations of a Google-like autocomplete algorithm. One used binary
+search and the other one used a hash table. The program also contains a UI that shows the user the autocompleted
+suggestions for every key stroke. As part of this project, I also performed benchmark analyses on
+both algorithms to compare their respective efficiencies. The code is in my GitHub account.
 
 ## Outline 
 - [Project Introduction](#project-introduction)
